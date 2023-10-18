@@ -24,18 +24,17 @@ project(steering-wheel C CXX ASM)
 pico_sdk_init()
 
 # Add executable. Default name is the project name, version 0.1
-
-add_executable(steering-wheel steering-wheel.c )
+add_executable(steering-wheel steering-wheel.c usb_descriptors.c)
 
 pico_set_program_name(steering-wheel "steering-wheel")
 pico_set_program_version(steering-wheel "0.1")
 
-pico_enable_stdio_uart(steering-wheel 1)
-pico_enable_stdio_usb(steering-wheel 0)
+#pico_enable_stdio_uart(steering-wheel 1)
+#pico_enable_stdio_usb(steering-wheel 0)
+
 
 # Add the standard library to the build
-target_link_libraries(steering-wheel
-        pico_stdlib)
+target_link_libraries(steering-wheel pico_stdlib pico_unique_id tinyusb_device tinyusb_board hardware_adc)
 
 # Add the standard include files to the build
 target_include_directories(steering-wheel PRIVATE
@@ -44,4 +43,3 @@ target_include_directories(steering-wheel PRIVATE
 )
 
 pico_add_extra_outputs(steering-wheel)
-
