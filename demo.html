@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+
+<body>
+    <button id="connect">connect steering wheel</button>
+    <p id="value"></button>
+    
+    <script>
+        let btnConnect = document.getElementById("connect")
+        let textValue = document.getElementById("value")
+        btnConnect.onclick = async function () {
+            const [wheel] = await window.navigator.hid.requestDevice({ filters: [{ vendorId: 0xCafe }] })
+            wheel.addEventListener("inputreport", ({ data, device, reportId }) => {
+                textValue.innerHTML = `steering value: ${data.getInt16(0, true)}`;
+            });
+            await wheel.open();
+            btnConnect.style.display = "none";
+        }
+    </script>
+</body>
+
+</html>

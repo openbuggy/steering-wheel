@@ -34,7 +34,7 @@ pico_set_program_version(steering-wheel "0.1")
 
 
 # Add the standard library to the build
-target_link_libraries(steering-wheel pico_stdlib pico_unique_id tinyusb_device tinyusb_board hardware_adc)
+target_link_libraries(steering-wheel pico_stdlib pico_unique_id tinyusb_device tinyusb_board)
 
 # Add the standard include files to the build
 target_include_directories(steering-wheel PRIVATE
